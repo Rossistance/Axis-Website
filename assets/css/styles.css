@@ -47,41 +47,20 @@ footer{background:var(--brand-dark);color:#fff;padding:50px 0;text-align:center;
 }
 
 
-/* --- Mobile Nav: slide-in, sticky header, dim backdrop (additive) --- */
-.visually-hidden{
-  position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;
-  clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden;
-}
-/* Sticky header */
+/* --- Mobile Nav: slide-in + backdrop, sticky header (additive) --- */
+.visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(50%);clip:rect(0 0 0 0);overflow:hidden}
 header{position:sticky;top:0;z-index:1002;background:var(--surface,#fff);backdrop-filter:saturate(1.2) blur(4px)}
-
-/* Touch-friendly buttons */
-.btn{min-height:44px;padding:.75rem 1.1rem}
-
-/* Toggle button */
-.nav-toggle{
-  display:none;align-items:center;gap:.5rem;background:transparent;border:2px solid currentColor;border-radius:12px;
-  padding:.45rem .75rem;line-height:1
-}
-
-/* Prevent sideways scroll */
+.nav-toggle{display:none;align-items:center;gap:.5rem;background:transparent;border:2px solid currentColor;border-radius:12px;padding:.45rem .75rem;line-height:1}
 html, body{max-width:100%;overflow-x:hidden}
-
-@media (max-width: 980px){
+@media (max-width:980px){
   .nav-toggle{display:inline-flex;position:absolute;right:16px;top:16px;z-index:1003}
-
-  /* Slide-in panel from right */
   html.nav-ready header nav{
     position:fixed;top:64px;right:0;bottom:0;width:min(88vw,360px);
     background:var(--surface,#fff);transform:translateX(100%);transition:transform .28s ease;
-    box-shadow: -16px 0 24px rgba(0,0,0,.14);z-index:1002;overflow-y:auto
+    box-shadow:-16px 0 24px rgba(0,0,0,.14);z-index:1002;overflow-y:auto
   }
-  html.nav-ready header nav ul{
-    display:flex;flex-direction:column;gap:14px;padding:20px;margin:0;list-style:none;align-items:stretch
-  }
+  html.nav-ready header nav ul{display:flex;flex-direction:column;gap:14px;padding:20px;margin:0;list-style:none;align-items:stretch}
   html.nav-ready header nav a{padding:.9rem 1rem}
-
-  /* Dimmed backdrop */
   .nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1001}
   html.nav-open .nav-backdrop{opacity:1;pointer-events:auto}
   html.nav-open header nav{transform:translateX(0)}

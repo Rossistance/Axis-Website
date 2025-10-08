@@ -27,24 +27,12 @@
     document.documentElement.classList.toggle('nav-open', open);
     backdrop.toggleAttribute('hidden', !open);
   }
-
   btn.addEventListener('click', function(){
-    var open = btn.getAttribute('aria-expanded') === 'true';
-    setOpen(!open);
+    setOpen(!(btn.getAttribute('aria-expanded') === 'true'));
   });
-
-  // Close on ESC
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){
-      setOpen(false);
-    }
+    if(e.key === 'Escape'){ setOpen(false); }
   });
-
-  // Close when clicking backdrop
   backdrop.addEventListener('click', function(){ setOpen(false); });
-
-  // Close when a nav link is clicked
-  nav.addEventListener('click', function(e){
-    if(e.target.closest('a')) setOpen(false);
-  });
+  nav.addEventListener('click', function(e){ if(e.target.closest('a')) setOpen(false); });
 })();
