@@ -3,7 +3,18 @@
 <title>Axis Energy — EPC & O&amp;M</title>
 <link rel="icon" href="assets/img/logo.png"/>
 <link rel="stylesheet" href="assets/css/styles.css"/></head><body>
-<style>#home-hero{--hero-image:url('assets/img/hero-2025/home.png')}</style>
+<style>
+  /* Robust hero background with fallbacks for GitHub Pages subpath */
+  #home-hero{--hero-image:url('assets/img/hero-2025/home.png?v=2')}
+  /* Force ::before to use the image variable, then try absolute subpath, then legacy SVG */
+  #home-hero.axis-hero::before{
+    background-image:
+      var(--hero-image),
+      url('/Axis-Website/assets/img/hero-2025/home.png?v=2'),
+      url('assets/img/hero-home.svg') !important;
+  }
+</style>
+
 <header><div class="axis-wrap header-inner"><a href="index.html" aria-label="Go to home"><img class="logo" src="assets/img/logo.png" alt="Axis Energy Logo"/></a><nav><ul><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="why-axis.html">Why Axis</a></li><li><a href="about.html">About</a></li><li><a href="news.html">News</a></li><li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></nav></div></header>
 <section id="home-hero" class="axis-hero"><div class="hero-inner">
   <div class="kicker reveal"><span class="dot"></span><span>Energy • EPC • O&amp;M</span></div>
