@@ -45,3 +45,27 @@ footer{background:var(--brand-dark);color:#fff;padding:50px 0;text-align:center;
   .reveal{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
+
+
+/* --- Mobile nav horizontal overflow fix (additive) --- */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+header, .header-inner { max-width: 100%; }
+header nav { max-width: 100%; overflow: hidden; }
+header nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-width: 100%;
+}
+
+@media (max-width: 980px){
+  header nav ul { gap: 12px; }
+}
+@media (max-width: 720px){
+  header nav ul { gap: 10px; }
+}
