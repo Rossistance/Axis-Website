@@ -36,3 +36,22 @@
   backdrop.addEventListener('click', function(){ setOpen(false); });
   nav.addEventListener('click', function(e){ if(e.target.closest('a')) setOpen(false); });
 })();
+
+// Ensure hero backgrounds hydrate even if CSS variables are dropped in production
+(function(){
+  var heroes = document.querySelectorAll('.axis-hero[data-hero-src]');
+  if(!heroes.length) return;
+
+  heroes.forEach(function(hero){
+    var src = hero.getAttribute('data-hero-src');
+    if(!src) return;
+    var docUrl = "url('" + src + "')";
+    var cssSrc = src.startsWith('assets/') ? '../' + src.slice('assets/'.length) : src;
+    var cssUrl = "url('" + cssSrc + "')";
+    hero.style.setProperty('--hero-image', cssUrl);
+    var current = getComputedStyle(hero).getPropertyValue('background-image');
+    if(!current || current === 'none' || current.indexOf('gradient') !== -1){
+      hero.style.backgroundImage = docUrl;
+    }
+  });
+})();
