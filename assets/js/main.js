@@ -23,13 +23,20 @@
   if(!btn || !nav || !backdrop) return;
 
   function setOpen(open){
-    btn.setAttribute('aria-expanded', String(open));
+    var expanded = open ? 'true' : 'false';
+    btn.setAttribute('aria-expanded', expanded);
     document.documentElement.classList.toggle('nav-open', open);
-    backdrop.toggleAttribute('hidden', !open);
+    backdrop.hidden = !open;
   }
   btn.addEventListener('click', function(){
     setOpen(!(btn.getAttribute('aria-expanded') === 'true'));
   });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 980 && btn.getAttribute('aria-expanded') === 'true'){
+      setOpen(false);
+    }
+  });
+  setOpen(false);
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape'){ setOpen(false); }
   });
